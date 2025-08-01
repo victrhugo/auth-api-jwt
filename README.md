@@ -39,3 +39,64 @@ src/
 ├── service/          # Lógica de negócio
 ├── security/         # Configurações de autenticação JWT
 └── DemoApplication.java
+```
+
+---
+
+## ⚙️ Como executar o projeto
+
+### 1. Clonar o repositório
+```bash
+git clone https://github.com/seu-usuario/auth-api-jwt.git
+cd auth-api-jwt
+```
+
+### 2. Importar no IntelliJ ou IDE de sua preferência
+
+### 3. Executar a aplicação
+Execute a classe `DemoApplication` ou use:
+```bash
+./mvnw spring-boot:run
+```
+
+### 4. Acessar o console do H2 (opcional)
+- URL: http://localhost:8080/h2-console  
+- JDBC URL: `jdbc:h2:mem:meubanco`  
+- Usuário: `sa` | Senha: *(em branco)*
+
+---
+
+## 📬 Endpoints principais
+
+| Método | Rota             | Descrição                    |
+|--------|------------------|------------------------------|
+| POST   | `/auth/register` | Cadastro de novo usuário     |
+| POST   | `/auth/login`    | Login e retorno do token JWT |
+| GET    | `/profile`       | Acesso autenticado (protegido) |
+
+> ⚠️ Rotas protegidas exigem Header:
+```
+Authorization: Bearer {seu_token_jwt}
+```
+
+---
+
+## 🛡️ Boas práticas implementadas
+
+- Separação clara de responsabilidades
+- Criptografia de senhas com BCrypt
+- Tokens JWT seguros e com expiração
+- Controle de erros no login/cadastro
+- Uso de `ResponseEntity` para respostas HTTP padronizadas
+- Validação básica no controller (e pode evoluir com Bean Validation)
+- Persistência com JPA + H2 para ambiente local
+
+---
+
+## ✍️ Futuras melhorias
+
+- Validação com anotações (`@Valid`)
+- Refresh token
+- Autenticação com roles e perfis
+- Integração com PostgreSQL
+- Swagger/OpenAPI para documentação
